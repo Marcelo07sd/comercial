@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from models import db, Cliente, Producto, Venta, DetalleVenta, Credito, Pago, ObservacionPago
 from utils_pdf import generar_pdf_venta
 from datetime import datetime
-
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
