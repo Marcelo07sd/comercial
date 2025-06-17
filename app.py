@@ -192,6 +192,15 @@ def clientes():
     lista = Cliente.query.all()
     return render_template('ver_clientes.html', clientes=lista)
 
+@app.route('/eliminar-cliente/<int:id>', methods=['POST'])
+def eliminar_cliente(id):
+    print(id)
+    cliente = Cliente.query.filter_by(cliente_id=id).first_or_404()  # ← aquí está la corrección
+    db.session.delete(cliente)
+    db.session.commit()
+    flash('Cliente eliminado correctamente.', 'success')
+    return redirect(url_for('clientes'))
+
 @app.route('/registrar-cliente', methods=['POST', 'GET'])
 def registrar_cliente():
     if request.method == 'POST':
